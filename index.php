@@ -4,9 +4,12 @@ require 'function.php';
 // require 'router.php';
 require 'Database.php';
 
-$db = new Database();
+$config = require('config.php');
 
-$posts = $db->query("select * from posts")->fetchAll(PDO::FETCH_ASSOC);
+$db = new Database($config['database']);
+
+// :: scope resolution operator
+$posts = $db->query("select * from posts")->fetchAll();
 
 dd($posts);
 
